@@ -1,7 +1,3 @@
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-
 document.getElementById('login-form')?.addEventListener('submit', async function(event) {
     event.preventDefault();
 
