@@ -1,1 +1,9 @@
- /* Your own styles comes here */
+body {
+    background-color: bisque;
+}
+
+.header {
+    font: italic;
+    text-align: center;
+    border: 20px solid brown;
+}
