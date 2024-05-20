@@ -11,6 +11,47 @@
     <div class="container">
         <!-- Your code comes here -->
     </div>
-    <script src="./index.js"></script>
+    
+    <header>
+        <h1>Welcome to Our Bakery!</h1>
+    </header>
+
+    <main>
+        <!-- Login Form -->
+        <section id="login-section">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="signup-link">Sign up here</a>.</p>
+        </section>
+
+        <!-- Signup Form (hidden by default) -->
+        <section id="signup-section" style="display: none;">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <label for="new-username">Username:</label>
+                <input type="text" id="new-username" name="new-username" required>
+                <label for="new-password">Password:</label>
+                <input type="password" id="new-password" name="new-password" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" id="login-link">Login here</a>.</p>
+        </section>
+
+        <!-- Display Area for Products, Orders, etc. -->
+        <section id="display-area">
+            <!-- This area will be populated dynamically by JavaScript -->
+        </section>
+    </main>
+
+    <!-- Add any JavaScript files or scripts here -->
+    <script src="app.js"></script>
 </body>
 </html>
