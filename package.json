@@ -1,6 +1,9 @@
 {
   "name": "salesvisits",
   "version": "1.0.0",
+  "repository": {
+    "url": "git+https://github.com/nicole-kirimi/capstone.project.git"
+  },
   "description": "A merchandising",
   "main": "index.js",
   "scripts": {
@@ -8,7 +11,9 @@
     "build": "webpack --mode=development",
     "webpackServer": "webpack-dev-server --open --mode=development",
     "lint": "eslint src --ext .js",
-    "start": "npm run build && npm run webpackServer"
+    "start": "npm run build && npm run webpackServer",
+    "predeploy": "npm run build",
+   "deploy": "gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",
