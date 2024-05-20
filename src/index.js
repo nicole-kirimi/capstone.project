@@ -12,3 +12,15 @@ const users = [];
 
 const JWT_SECRET = 'your_jwt_secret';
 
+function generateToken(user) {
+    return jwt.sign({ username: user.username }, JWT_SECRET);
+}
+
+// Function to verify JWT token
+function verifyToken(token) {
+    try {
+        return jwt.verify(token, JWT_SECRET);
+    } catch (error) {
+        return null;
+    }
+}
