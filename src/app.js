@@ -1,28 +1,40 @@
-async function handleLogin(event) {
-    event.preventDefault();
+const express = require('express');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const app = express();
+const PORT = 3000;
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+app.use(bodyParser.json());
+app.use(express.static('public'));
 
-    try {
-        const response = await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
+const dbFilePath = './db.json';
 
-        if (response.ok) {
-            const { token } = await response.json();
-            localStorage.setItem('token', token);
-            alert('Login successful');
-            // Redirect or display logged-in content
-        } else {
-            alert('Invalid username or password');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again later.');
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    const users = JSON.parse(fs.readFileSync(dbFilePath, 'utf8'));
+
+    const user = users.find(user => user.username === username && user.password === password);
+
+    if (user) {
+        res.json({ success: true });
+    } else {
+        res.json({ success: false });
     }
-}
+});
+
+app.post('/signup', (req, res) => {
+    const { username, password } = req.body;
+    const users = JSON.parse(fs.readFileSync(dbFilePath, 'utf8'));
+
+    if (users.find(user => user.username === username)) {
+        res.json({ success: false, message: 'Username already exists' });
+    } else {
+        users.push({ username, password });
+        fs.writeFileSync(dbFilePath, JSON.stringify(users, null, 2));
+        res.json({ success: true });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
